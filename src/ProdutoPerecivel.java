@@ -11,7 +11,7 @@ public class ProdutoPerecivel extends Produto {
     public ProdutoPerecivel(String desc, double precoCusto, double margemLucro, LocalDate dataValidade) {
         super(desc, precoCusto, margemLucro);
         if (dataValidade.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("Data de validade não pode ser anterior ao dia atual.");
+            throw new RuntimeException("Data de validade não pode ser anterior ao dia atual.");
         }
         this.dataValidade = dataValidade;
     }
@@ -19,12 +19,11 @@ public class ProdutoPerecivel extends Produto {
     public ProdutoPerecivel(String desc, double precoCusto, LocalDate dataValidade) {
         super(desc, precoCusto);
         if (dataValidade.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("Data de validade não pode ser anterior ao dia atual.");
+            throw new RuntimeException("Data de validade não pode ser anterior ao dia atual.");
         }
         this.dataValidade = dataValidade;
     }
 
-    @Override
     public double valorDeVenda() {
         LocalDate hoje = LocalDate.now();
         if (dataValidade.isBefore(hoje)) {
@@ -36,8 +35,7 @@ public class ProdutoPerecivel extends Produto {
         }
         return precoBase;
     }
-
-    @Override
+    
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return super.toString() + " (val: " + dataValidade.format(fmt) + ")";

@@ -8,7 +8,6 @@ public class ProdutoNaoPerecivel extends Produto {
         super(desc, precoCusto);
     }
 
-    @Override
     public double valorDeVenda() {
         return precoCusto * (1.0 + margemLucro);
     }
