@@ -18,6 +18,10 @@ public abstract class Produto {
 		this(desc, precoCusto, MARGEM_PADRAO);
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
 	public abstract double valorDeVenda();
 
 	@Override
